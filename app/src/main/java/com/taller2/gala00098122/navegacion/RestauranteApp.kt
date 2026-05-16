@@ -10,6 +10,9 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.taller2.gala00098122.navegacion.routes.Routes
+import com.taller2.gala00098122.ui.screens.dishScreen.DishScreen
+import com.taller2.gala00098122.ui.screens.restaurantScreen.RestaurantScreen
+import com.taller2.gala00098122.ui.screens.searchScreen.SearchScreen
 
 @Composable
 fun RestauranteApp(modifier: Modifier = Modifier) {
@@ -22,7 +25,8 @@ fun RestauranteApp(modifier: Modifier = Modifier) {
         RestaurantScreen(
           navigateToDishes = { restaurantId ->
             backStack.add(Routes.Dishes(restaurantId))
-          }
+          },
+          navigateToSearch = { backStack.add(Routes.Search) },
         )
       }
       entry<Routes.Dishes> { key ->
@@ -31,7 +35,7 @@ fun RestauranteApp(modifier: Modifier = Modifier) {
           navigateBack = { backStack.removeLastOrNull() }
         )
       }
-      entry<Routes.Search>{key ->
+      entry<Routes.Search> {
         SearchScreen(
           navigateBack = { backStack.removeLastOrNull() }
         )

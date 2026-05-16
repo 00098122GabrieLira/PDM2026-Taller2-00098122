@@ -8,6 +8,7 @@ val DummyRestaurant = listOf(
     id = 1,
     name = "Pizza Place",
     description = "Las mejores pizzas artesanales de la ciudad",
+    voteAverage = 6.751,
     imageUrl = "https://images.unsplash.com/photo-1611915365928-565c527a0590?q=80&w=1025",
     categories = listOf("Italiana", "Pizzas"),
     menu = listOf(
