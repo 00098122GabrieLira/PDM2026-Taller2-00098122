@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.taller2.gala00098122.data.repositories.restaurantRepository.RestaurantApiRepository
 import com.taller2.gala00098122.data.repositories.restaurantRepository.RestaurantRepository
-import com.taller2.gala00098122.dummy.DummyRestaurant
 import com.taller2.gala00098122.model.Restaurant
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -39,7 +39,10 @@ fun RestauranteApp(modifier: Modifier = Modifier) {
       }
       entry<Routes.Search> {
         SearchScreen(
-          navigateBack = { backStack.removeLastOrNull() }
+          navigateBack = { backStack.removeLastOrNull() },
+          navigateToDishes = { restaurantId ->
+            backStack.add(Routes.Dishes(restaurantId))
+          }
         )
       }
       entry<Routes.ShoppingCart> {
