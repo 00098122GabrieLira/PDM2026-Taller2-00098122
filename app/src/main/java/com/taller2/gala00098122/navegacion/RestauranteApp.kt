@@ -13,6 +13,7 @@ import com.taller2.gala00098122.navegacion.routes.Routes
 import com.taller2.gala00098122.ui.screens.dishScreen.DishScreen
 import com.taller2.gala00098122.ui.screens.restaurantScreen.RestaurantScreen
 import com.taller2.gala00098122.ui.screens.searchScreen.SearchScreen
+import com.taller2.gala00098122.ui.screens.shoppingCartScreen.ShoppingCartScreen
 
 @Composable
 fun RestauranteApp(modifier: Modifier = Modifier) {
@@ -32,11 +33,17 @@ fun RestauranteApp(modifier: Modifier = Modifier) {
       entry<Routes.Dishes> { key ->
         DishScreen(
           restaurantId = key.restaurantId,
-          navigateBack = { backStack.removeLastOrNull() }
+          navigateBack = { backStack.removeLastOrNull() },
+          navigateToCart = { backStack.add(Routes.ShoppingCart) }
         )
       }
       entry<Routes.Search> {
         SearchScreen(
+          navigateBack = { backStack.removeLastOrNull() }
+        )
+      }
+      entry<Routes.ShoppingCart> {
+        ShoppingCartScreen(
           navigateBack = { backStack.removeLastOrNull() }
         )
       }
