@@ -41,7 +41,6 @@ fun ShoppingCartScreen(
 ) {
   val cartItems by viewModel.cartItems.collectAsState()
   val loading by viewModel.loading.collectAsState()
-  val totalItems by viewModel.totalItems.collectAsState()
   val context = LocalContext.current
   
   AppScaffold(
