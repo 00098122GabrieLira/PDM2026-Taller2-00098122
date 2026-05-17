@@ -27,23 +27,28 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.taller2.gala00098122.scaffold.AppScaffold
 import com.taller2.gala00098122.ui.screens.dishScreen.components.DishItem
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
+import com.taller2.gala00098122.ui.screens.shoppingCartScreen.ShoppingCartViewModel
 
 @Composable
 fun DishScreen(
   restaurantId: Int,
   navigateBack: () -> Unit,
   navigateToCart: () -> Unit,
-  viewModel: DishViewModel = viewModel()
+  dishViewModel: DishViewModel = viewModel(),
+  shoppingCartViewModel: ShoppingCartViewModel = viewModel()
 ) {
   
-  val restaurant by viewModel.restaurant.collectAsState()
-  val loading by viewModel.isLoading.collectAsState()
+  val restaurant by dishViewModel.restaurant.collectAsState()
+  val loading by dishViewModel.isLoading.collectAsState()
   val context = LocalContext.current
+  val totalItems by shoppingCartViewModel.totalItems.collectAsState()
   
   LaunchedEffect(restaurantId) {
-    viewModel.loadDishes(restaurantId)
+    dishViewModel.loadDishes(restaurantId)
   }
   
   AppScaffold(
@@ -59,11 +64,26 @@ fun DishScreen(
     title = restaurant?.name ?: "Cargando...",
     actions = {
       IconButton(onClick = { navigateToCart() }) {
-        Icon(
-          Icons.Default.ShoppingCart,
-          contentDescription = "Carrito de compras",
-          tint = Color.White
-        )
+        BadgedBox(
+          badge = {
+            if (totalItems > 0) {
+              Badge(
+                containerColor = Color.Red,
+                contentColor = Color.White
+              ) {
+                Text(
+                  text = if (totalItems > 99) "99+" else totalItems.toString()
+                )
+              }
+            }
+          }
+        ) {
+          Icon(
+            Icons.Default.ShoppingCart,
+            contentDescription = "Carrito de compras",
+            tint = Color.White
+          )
+        }
       }
     }
   ) { padding ->
@@ -100,14 +120,19 @@ fun DishScreen(
           LazyColumn(
             modifier = Modifier
               .fillMaxWidth()
-              .weight(1f).
-            padding(16.dp),
+              .weight(1f)
+              .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
           ) {
             items(restaurant!!.menu) { dish ->
               DishItem(
                 dish = dish,
                 onAddToCart = { dishName ->
+                  shoppingCartViewModel.addToCart(
+                    dish = dish,
+                    restaurantId = restaurant!!.id,
+                    restaurantName = restaurant!!.name
+                  )
                   Toast.makeText(
                     context,
                     "$dishName agregado al carrito",

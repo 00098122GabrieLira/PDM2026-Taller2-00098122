@@ -17,7 +17,7 @@ fun CategoryHeader(
   modifier: Modifier = Modifier
 ) {
   Text(
-    text = "Comida $category",
+    text = category,
     modifier = modifier
       .fillMaxWidth()
       .padding(vertical = 8.dp, horizontal = 4.dp),
