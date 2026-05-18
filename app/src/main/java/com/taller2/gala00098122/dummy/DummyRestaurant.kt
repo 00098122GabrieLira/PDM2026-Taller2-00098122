@@ -36,7 +36,7 @@ val DummyRestaurant = listOf(
     menu = listOf(
       Dish(
         id = 3,
-        name = "Oveja Francesa.",
+        name = "Oveja Francesa",
         description = "Tostada de pan brioche con corteza de panela, mix de nueces tostadas y mantequilla quemada (avellanada), servida con nuestro sirope de maple preparado en casa",
         imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZBK_tW2B9rR5kKK-GBL51Q649jcjYqu1v0A&s"
       ),
@@ -143,7 +143,7 @@ val DummyRestaurant = listOf(
     name = "Bubba's El Salvador",
     description = "Desde cócteles y ceviches, carpaccios, po'boys y otros platillos con mariscos hasta nuestros famosos boils de mariscos por libra los cuales puedes combinarlos con nuestras salsas a base de mantequilla.",
     voteAverage = 4.35,
-    imageUrl = "https://images.unsplash.com/photo-1611915365928-565c527a0590?q=80&w=1025",
+    imageUrl = "https://bubbassv.com/wp-content/uploads/2023/06/280584613_1457081251391313_5176838345955707726_n-950x633.png",
     categories = listOf("Sopas y ensaladas", "Entradas", "Ceviches", "Infantiles"),
     menu = listOf(
       Dish(
